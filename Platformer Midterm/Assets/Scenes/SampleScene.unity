@@ -413,6 +413,13 @@ MonoBehaviour:
   speed: 10
   jump: 30
   _rigidbody: {fileID: 0}
+  friction: 0.2
+  accel: 0.3
+  plats:
+    serializedVersion: 2
+    m_Bits: 64
+  extraHeight: 0.1
+  sideBuffer: 0.1
 --- !u!1 &1741647951
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +431,7 @@ GameObject:
   - component: {fileID: 1741647954}
   - component: {fileID: 1741647953}
   - component: {fileID: 1741647955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
