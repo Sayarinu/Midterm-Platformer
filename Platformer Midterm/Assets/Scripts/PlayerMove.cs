@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    public int speed =5;
+    public int speed = 5;
     public int jump = 2;
     public Rigidbody2D _rigidbody;
     float xspeed=0;
@@ -19,6 +19,10 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        PlayerInput input = new PlayerInput();
+        input.Player.Enable();
+        input.Player.jump.performed += Jump;
+        input.Player.movement.performed += Move;
     }
 
     // Update is called once per frame
@@ -42,11 +46,21 @@ public class PlayerMove : MonoBehaviour
         //     }
         // }
         // _rigidbody.velocity = new Vector2(xspeed,0);
+        
     }
 
     public void Jump(InputAction.CallbackContext context){
         if(context.performed){
             _rigidbody.velocity = new Vector2(xspeed,jump);
         }
+    }
+
+    public void Move(InputAction.CallbackContext context){
+        float val = 0f;
+        Debug.Log(context.ReadValue<float>());
+        xspeed+=val*speed;
+    
+        _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
+        
     }
 }
