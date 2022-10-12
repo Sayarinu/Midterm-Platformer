@@ -18,7 +18,7 @@
                     "name": "movement",
                     "type": "Value",
                     "id": "0bc962e9-96c0-43ce-87db-dd3180bef2eb",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -95,39 +95,6 @@
                     "name": "positive",
                     "id": "907173b9-7025-4deb-8956-a95c56847466",
                     "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "bcfd1ff2-07b7-48c4-a8d5-f3afd3c01e65",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "bcc5ed3b-766b-443d-9b5f-c939f434304c",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "8a3a84a5-adae-4a29-bcab-358dfd0fe7a1",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
