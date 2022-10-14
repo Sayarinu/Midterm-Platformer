@@ -17,6 +17,8 @@ public class PlayerMove : MonoBehaviour
     float friction=0.15f;
     [SerializeField]
     float accel=0.2f;
+    [SerializeField]
+    float dashFriction=1f;
 
     [SerializeField]
     private LayerMask plats;
@@ -90,6 +92,14 @@ public class PlayerMove : MonoBehaviour
             }else if(xspeed<0){
                 facingRight = -1;
             }
+            if(isGrounded()){
+                if(xspeed>speed){
+                    xspeed-=dashFriction;
+                }
+                if((speed*-1)>xspeed){
+                    xspeed+=dashFriction;
+                }
+            }
             _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
         // if(Input.GetButton("Left")){
         //     xspeed-=accel;
@@ -151,9 +161,12 @@ public class PlayerMove : MonoBehaviour
         isDashing = true;
         _rigidbody.velocity = new Vector2(0,0);
         _rigidbody.AddForce(vec.normalized*dashspeed,ForceMode2D.Impulse);
+        xspeed=vec.normalized.x*dashspeed;
         if(vec==Vector2.zero){
             _rigidbody.AddForce(new Vector2(facingRight*dashspeed,0),ForceMode2D.Impulse);
+            xspeed=facingRight*dashspeed;
         }
+        
         float gravityScale = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0;
         yield return new WaitForSeconds(0.1f);
