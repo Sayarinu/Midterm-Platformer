@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ActiveEnemy : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Enemy")
-            other.gameObject.SetActive(true);
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.transform.tag == "Respawn") {
+            for (int i = 0; i < other.transform.childCount; i++) {
+                other.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
     }
 
-    private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.tag == "Enemy")
-            other.gameObject.SetActive(false);
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.transform.tag == "Respawn") {
+            for (int i = 0; i < other.transform.childCount; i++) {
+                other.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 }

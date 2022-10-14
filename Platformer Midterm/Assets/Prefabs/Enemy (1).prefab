@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2753185188078392050}
   - component: {fileID: 2753185188078392051}
-  - component: {fileID: 2753185188078392048}
   - component: {fileID: 2753185188078392049}
   - component: {fileID: 2753185188078392054}
   m_Layer: 0
@@ -64,22 +63,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!58 &2753185188078392048
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753185188078392055}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &2753185188078392049
 Rigidbody2D:
   serializedVersion: 4
