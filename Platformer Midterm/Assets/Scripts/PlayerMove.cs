@@ -35,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.freezeRotation = true;
         boxcollider = GetComponent<BoxCollider2D>();
         input = new PlayerInput();
         input.Player.Enable();
@@ -54,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(boxcollider.bounds.center - new Vector3(boxcollider.bounds.extents.x-sideBuffer,0),Vector2.down*(boxcollider.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(boxcollider.bounds.center - new Vector3(boxcollider.bounds.extents.x-sideBuffer,boxcollider.bounds.extents.y + extraHeight),Vector2.right*(boxcollider.bounds.extents.x-sideBuffer)*2, rayColor);
         float val = input.Player.movement.ReadValue<float>();
-        
+    
         if(xspeed<speed && (speed*-1)<xspeed){
             xspeed+=val*accel;
         }
@@ -105,12 +106,9 @@ public class PlayerMove : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context){
         float val = context.ReadValue<float>();
-       
-        
         if(xspeed<speed && (speed*-1)<xspeed){
             xspeed+=val*accel;
         }
-       
         _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
         
     }
