@@ -198,7 +198,13 @@ public class PlayerMove : MonoBehaviour
                 dashFriction*=2;
                 jump*=4;
                 gravityScale*=4;
+                xspeed*=2;
                 _rigidbody.gravityScale=gravityScale;
+                if(_rigidbody.velocity.y<0){
+                    _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y);
+                }else{
+                    _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y*4);
+                }
             }
             inWater = false;
         }
