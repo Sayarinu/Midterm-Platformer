@@ -42,6 +42,16 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private int facingRight = 1;
 
+    [SerializeField]
+    private bool inWater = false;
+
+    [SerializeField]
+    private float gravityScale;
+
+    [SerializeField]
+    private float swimTime=0;
+    [SerializeField]
+    private float currentTime=0;
 
 
     // Start is called before the first frame update
@@ -50,6 +60,7 @@ public class PlayerMove : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.freezeRotation = true;
         boxcollider = GetComponent<BoxCollider2D>();
+        gravityScale = _rigidbody.gravityScale;
         input = new PlayerInput();
         input.Player.Enable();
         input.Player.jump.performed += Jump;
@@ -101,27 +112,10 @@ public class PlayerMove : MonoBehaviour
                 }
             }
             _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
-        // if(Input.GetButton("Left")){
-        //     xspeed-=accel;
-        // }
-        // if(Input.GetButton("Right")){
-        //     xspeed+=accel;
-        // }
-        // if(!Input.GetButton("Right") && !Input.GetButton("Left")){
-        //     if(xspeed>0){
-        //         xspeed-=friction;
-        //     }
-        //     if(xspeed<0){
-        //         xspeed+=friction;
-        //     }
-        //     if(xspeed<0.15 && -0.15<xspeed){
-        //         xspeed=0;
-        //     }
-        // }
-        // _rigidbody.velocity = new Vector2(xspeed,0);
         }else{
             dashAvailable = false;
         }
+        
         
     }
 
@@ -132,7 +126,7 @@ public class PlayerMove : MonoBehaviour
         return ray.collider!=null;
     }
     public void Jump(InputAction.CallbackContext context){
-        if(context.performed && isGrounded()){
+        if(context.performed && (isGrounded() || inWater)){
             _rigidbody.velocity = new Vector2(xspeed,jump);
         }
     }
@@ -167,10 +161,46 @@ public class PlayerMove : MonoBehaviour
             xspeed=facingRight*dashspeed;
         }
         
-        float gravityScale = _rigidbody.gravityScale;
+        gravityScale = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0;
         yield return new WaitForSeconds(0.1f);
         isDashing = false;
         _rigidbody.gravityScale=gravityScale;
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.gameObject.layer==4){
+            
+            if(!inWater){
+                speed/=2;
+                accel/=2;
+                friction/=2;
+                dashspeed/=2;
+                dashFriction/=2;
+                jump/=4;
+                xspeed/=2;
+                gravityScale/=4;
+                _rigidbody.gravityScale=gravityScale;
+                _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/4);
+            }
+            inWater = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.layer==4){
+            
+            if(inWater){
+                speed*=2;
+                accel*=2;
+                friction*=2;
+                dashspeed*=2;
+                dashFriction*=2;
+                jump*=4;
+                gravityScale*=4;
+                _rigidbody.gravityScale=gravityScale;
+            }
+            inWater = false;
+        }
     }
 }
