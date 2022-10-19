@@ -129,7 +129,7 @@ public class PlayerMove : MonoBehaviour
         return ray.collider!=null;
     }
     public void Jump(InputAction.CallbackContext context){
-        if(context.performed && (isGrounded() || (inWater && currentTime - swimTime > 0.1))){
+        if(context.performed && (isGrounded() || (inWater && currentTime - swimTime > 0.2))){
             swimTime = currentTime;
             _rigidbody.velocity = new Vector2(xspeed,jump);
         }
@@ -181,7 +181,7 @@ public class PlayerMove : MonoBehaviour
                 friction/=2;
                 dashspeed/=2;
                 dashFriction/=2;
-                jump/=4;
+                jump/=3;
                 xspeed/=2;
                 gravityScale/=4;
                 _rigidbody.gravityScale=gravityScale;
@@ -200,7 +200,7 @@ public class PlayerMove : MonoBehaviour
                 friction*=2;
                 dashspeed*=2;
                 dashFriction*=2;
-                jump*=4;
+                jump*=3;
                 gravityScale*=4;
                 xspeed*=2;
                 _rigidbody.gravityScale=gravityScale;
