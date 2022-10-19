@@ -119,6 +119,9 @@ public class PlayerMove : MonoBehaviour
         
     }
 
+    private void FixedUpdate() {
+        currentTime += Time.deltaTime;
+    }
     private bool isGrounded(){
         RaycastHit2D ray = Physics2D.BoxCast(boxcollider.bounds.center,boxcollider.bounds.size-new Vector3(sideBuffer,0,0),0f,Vector2.down,extraHeight,plats);
         
@@ -126,7 +129,8 @@ public class PlayerMove : MonoBehaviour
         return ray.collider!=null;
     }
     public void Jump(InputAction.CallbackContext context){
-        if(context.performed && (isGrounded() || inWater)){
+        if(context.performed && (isGrounded() || (inWater && currentTime - swimTime > 0.1))){
+            swimTime = currentTime;
             _rigidbody.velocity = new Vector2(xspeed,jump);
         }
     }
@@ -181,7 +185,7 @@ public class PlayerMove : MonoBehaviour
                 xspeed/=2;
                 gravityScale/=4;
                 _rigidbody.gravityScale=gravityScale;
-                _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/4);
+                _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/2);
             }
             inWater = true;
         }
