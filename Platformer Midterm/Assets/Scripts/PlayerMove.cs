@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerMove : MonoBehaviour
@@ -220,6 +221,9 @@ public class PlayerMove : MonoBehaviour
                     hitTime=currentTime;
                     invincible = true;
                     health-=1;
+                    if(health==0){
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    }
                 }
             }
 
