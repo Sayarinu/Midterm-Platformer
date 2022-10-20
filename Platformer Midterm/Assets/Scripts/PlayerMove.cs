@@ -208,7 +208,7 @@ public class PlayerMove : MonoBehaviour
         if(other.CompareTag("Enemy")){
             if(isDashing){
                 Destroy(other.gameObject);
-            }else if (isGrounded(enemies,0)){
+            }else if (isGrounded(enemies,0) && !isGrounded(plats,sideBuffer) && !inWater){
                 Destroy(other.gameObject);
                 if(input.Player.jump.IsPressed()){
                     _rigidbody.velocity = new Vector2(xspeed,jump);
