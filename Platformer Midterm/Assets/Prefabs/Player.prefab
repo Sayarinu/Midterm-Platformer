@@ -147,12 +147,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  dashspeed: 20
   jump: 30
   _rigidbody: {fileID: 0}
   friction: 0.4
   accel: 0.6
+  dashFriction: 1
   plats:
     serializedVersion: 2
     m_Bits: 64
+  enemies:
+    serializedVersion: 2
+    m_Bits: 128
   extraHeight: 0.1
   sideBuffer: 0.1
+  dashAvailable: 1
+  isDashing: 0
+  facingRight: 1
+  inWater: 0
+  gravityScale: 0
+  swimTime: 0
+  hitTime: 0
+  invincible: 0
+  currentTime: 0
+  health: 5
