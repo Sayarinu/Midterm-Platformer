@@ -97,7 +97,8 @@ public class PlayerMove : MonoBehaviour
         input.Player.jump.performed += Jump;
         input.Player.movement.performed += Move;
         input.Player.dash.performed += Dash;
-        
+        // set spawn as first checkpoint
+        PublicVars.currentCheckpoint = transform.position;
     }
 
     // Update is called once per frame
@@ -256,11 +257,28 @@ public class PlayerMove : MonoBehaviour
                 if(PublicVars.playerHealth<=0){
                     _audioSource.PlayOneShot(deathSound);
                     PublicVars.playerHealth=PublicVars.maxHealth;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    Die();
                 }
             } 
-        }
-    }
+            }else{
+                if(!invincible){
+                    hitTime=currentTime;
+                    invincible = true;
+                    health-=1;
+                    if(health==0){
+                        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        Die();
+                    }
+                }
+            } if (other.CompareTag("DeathBox") && !invincible) {
+                    Die();
+            } else if (other.gameObject.layer == 4) {   // in water
+                if (!PublicVars.canSwim) {
+                    Die();
+                }
+            }
+        } 
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.layer==4){
