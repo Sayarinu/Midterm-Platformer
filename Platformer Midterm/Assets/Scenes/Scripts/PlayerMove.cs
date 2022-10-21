@@ -231,8 +231,8 @@ public class PlayerMove : MonoBehaviour
                     }
                 }
             }
-
-            
+        } else if (other.CompareTag("DeathBox")) {
+            Die();
         }
     }
 
