@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
+
 public class PlayerMove : MonoBehaviour
 {
     
@@ -13,6 +13,11 @@ public class PlayerMove : MonoBehaviour
     public int jump = 2;
     public Rigidbody2D _rigidbody;
     float xspeed=0;
+
+    public static bool canSwim;
+    public static bool canDash;
+    
+
 
     [SerializeField]
     float friction=0.15f;
@@ -60,8 +65,9 @@ public class PlayerMove : MonoBehaviour
     private bool invincible=false;
     [SerializeField]
     private float currentTime=0;
-    [SerializeField]
-    private int health=5;
+    
+    
+
 
 
     // Start is called before the first frame update
@@ -131,7 +137,6 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate() {
         currentTime += 1;
-        print(health);
         if(currentTime - hitTime > 50){
             invincible=false;
         }
@@ -216,18 +221,19 @@ public class PlayerMove : MonoBehaviour
                 }else{
                     _rigidbody.velocity = new Vector2(xspeed,jump/2);
                 }
-            }else{
-                if(!invincible){
-                    hitTime=currentTime;
-                    invincible = true;
-                    health-=1;
-                    if(health==0){
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    }
+                hitTime = currentTime - 49;
+                invincible = true;
+                print(currentTime + " kill");
+            }else if(!invincible){
+                print(currentTime + " hit");
+                hitTime=currentTime;
+                invincible = true;
+                PublicVars.playerHealth-=1;
+                if(PublicVars.playerHealth<=0){
+                    PublicVars.playerHealth=PublicVars.maxHealth;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
-            }
-
-            
+            } 
         }
     }
 
@@ -252,5 +258,10 @@ public class PlayerMove : MonoBehaviour
             }
             inWater = false;
         }
+    }
+
+    private void Die() {
+        transform.position = PublicVars.currentCheckpoint;
+        PublicVars.playerHealth = 3;
     }
 }
