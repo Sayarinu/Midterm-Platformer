@@ -258,4 +258,9 @@ public class PlayerMove : MonoBehaviour
             inWater = false;
         }
     }
+
+    private void Die() {
+        transform.position = PublicVars.currentCheckpoint;
+        PublicVars.playerHealth = 3;
+    }
 }
