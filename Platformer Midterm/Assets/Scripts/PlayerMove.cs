@@ -16,8 +16,22 @@ public class PlayerMove : MonoBehaviour
 
     public static bool canSwim;
     public static bool canDash;
-    
 
+    AudioSource _audioSource;
+
+    public AudioClip enemyDeathSound;
+    public AudioClip deathSound;
+
+    public AudioClip dashSound;
+
+    public AudioClip takeDamageSound;
+
+    public AudioClip walkSound;
+
+    public AudioClip jumpSound;
+
+    public AudioClip swimJumpSound;
+    
 
     [SerializeField]
     float friction=0.15f;
@@ -73,6 +87,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.freezeRotation = true;
         boxcollider = GetComponent<BoxCollider2D>();
@@ -151,6 +166,11 @@ public class PlayerMove : MonoBehaviour
         if(context.performed && (isGrounded(plats,sideBuffer) || (inWater && currentTime - swimTime > 10))){
             swimTime = currentTime;
             _rigidbody.velocity = new Vector2(xspeed,jump);
+            if (!inWater) {
+                _audioSource.PlayOneShot(jumpSound);
+            } else {
+                _audioSource.PlayOneShot(swimJumpSound);
+            }
         }
     }
 
@@ -169,6 +189,7 @@ public class PlayerMove : MonoBehaviour
             print("dash");
             StartCoroutine("DashTime");
             dashAvailable = false;
+            _audioSource.PlayOneShot(dashSound);
         }
     }
 
@@ -213,8 +234,10 @@ public class PlayerMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy")){
             if(isDashing){
+                _audioSource.PlayOneShot(enemyDeathSound);
                 Destroy(other.gameObject);
             }else if (isGrounded(enemies,0) && !isGrounded(plats,sideBuffer) && !inWater){
+                _audioSource.PlayOneShot(enemyDeathSound);
                 Destroy(other.gameObject);
                 if(input.Player.jump.IsPressed()){
                     _rigidbody.velocity = new Vector2(xspeed,jump);
@@ -223,13 +246,15 @@ public class PlayerMove : MonoBehaviour
                 }
                 hitTime = currentTime - 49;
                 invincible = true;
-                print(currentTime + " kill");
             }else if(!invincible){
-                print(currentTime + " hit");
                 hitTime=currentTime;
                 invincible = true;
                 PublicVars.playerHealth-=1;
+                if (PublicVars.playerHealth != 0) {
+                    _audioSource.PlayOneShot(takeDamageSound);
+                }
                 if(PublicVars.playerHealth<=0){
+                    _audioSource.PlayOneShot(deathSound);
                     PublicVars.playerHealth=PublicVars.maxHealth;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
