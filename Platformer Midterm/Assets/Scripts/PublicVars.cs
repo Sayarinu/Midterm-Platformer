@@ -6,7 +6,8 @@ public static class PublicVars
 {
     public static int playerHealth = 3;
     public static int maxHealth = 3;
-    public static bool canSwim;
-    public static bool canDash;
-    public static Vector2 currentCheckpoint = Vector2.zero;
+    public static bool canSwim = false;
+    public static bool canDash = false;
+    public static int numberOfKeys = 0;
+    public static Vector3 currentCheckpoint = Vector3.zero;
 }
