@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerMove : MonoBehaviour
@@ -13,6 +14,11 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D _rigidbody;
     float xspeed=0;
 
+    public static bool canSwim;
+    public static bool canDash;
+    public static int maxHealth = 2;
+
+
     [SerializeField]
     float friction=0.15f;
     [SerializeField]
@@ -22,6 +28,9 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private LayerMask plats;
+
+    [SerializeField]
+    private LayerMask enemies;
     [SerializeField]
     float extraHeight = 0.1f;
 
@@ -51,7 +60,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float swimTime=0;
     [SerializeField]
+    private float hitTime=0;
+    [SerializeField]
+    private bool invincible=false;
+    [SerializeField]
     private float currentTime=0;
+    
+    public static int health=2;
 
 
     // Start is called before the first frame update
@@ -72,7 +87,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isGrounded()){
+        if(isGrounded(plats,sideBuffer)){
 
             rayColor = Color.green; 
             dashAvailable = true;
@@ -103,7 +118,7 @@ public class PlayerMove : MonoBehaviour
             }else if(xspeed<0){
                 facingRight = -1;
             }
-            if(isGrounded()){
+            if(isGrounded(plats,sideBuffer)){
                 if(xspeed>speed){
                     xspeed-=dashFriction;
                 }
@@ -120,16 +135,20 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        currentTime += Time.deltaTime;
+        currentTime += 1;
+        print(health);
+        if(currentTime - hitTime > 50){
+            invincible=false;
+        }
     }
-    private bool isGrounded(){
-        RaycastHit2D ray = Physics2D.BoxCast(boxcollider.bounds.center,boxcollider.bounds.size-new Vector3(sideBuffer,0,0),0f,Vector2.down,extraHeight,plats);
+    private bool isGrounded(LayerMask layer, float buffer){
+        RaycastHit2D ray = Physics2D.BoxCast(boxcollider.bounds.center,boxcollider.bounds.size-new Vector3(buffer,0,0),0f,Vector2.down,extraHeight,layer);
         
        
         return ray.collider!=null;
     }
     public void Jump(InputAction.CallbackContext context){
-        if(context.performed && (isGrounded() || (inWater && currentTime - swimTime > 0.2))){
+        if(context.performed && (isGrounded(plats,sideBuffer) || (inWater && currentTime - swimTime > 10))){
             swimTime = currentTime;
             _rigidbody.velocity = new Vector2(xspeed,jump);
         }
@@ -188,6 +207,32 @@ public class PlayerMove : MonoBehaviour
                 _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/2);
             }
             inWater = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Enemy")){
+            if(isDashing){
+                Destroy(other.gameObject);
+            }else if (isGrounded(enemies,0) && !isGrounded(plats,sideBuffer) && !inWater){
+                Destroy(other.gameObject);
+                if(input.Player.jump.IsPressed()){
+                    _rigidbody.velocity = new Vector2(xspeed,jump);
+                }else{
+                    _rigidbody.velocity = new Vector2(xspeed,jump/2);
+                }
+            }else{
+                if(!invincible){
+                    hitTime=currentTime;
+                    invincible = true;
+                    health-=1;
+                    if(health==0){
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    }
+                }
+            }
+
+            
         }
     }
 
