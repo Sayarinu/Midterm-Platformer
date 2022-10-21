@@ -261,8 +261,17 @@ public class PlayerMove : MonoBehaviour
                     Die();
                 }
             } 
-            }
-            if (other.CompareTag("DeathBox") && !invincible) {
+            }else{
+                if(!invincible){
+                    hitTime=currentTime;
+                    invincible = true;
+                    PublicVars.playerHealth-=1;
+                    if(PublicVars.playerHealth==0){
+                        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        Die();
+                    }
+                }
+            } if (other.CompareTag("DeathBox") && !invincible) {
                     Die();
             } else if (other.gameObject.layer == 4) {   // in water
                 if (!PublicVars.canSwim) {
