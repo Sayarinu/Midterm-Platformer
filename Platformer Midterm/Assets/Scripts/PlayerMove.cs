@@ -265,8 +265,8 @@ public class PlayerMove : MonoBehaviour
                 if(!invincible){
                     hitTime=currentTime;
                     invincible = true;
-                    health-=1;
-                    if(health==0){
+                    PublicVars.playerHealth-=1;
+                    if(PublicVars.playerHealth==0){
                         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         Die();
                     }

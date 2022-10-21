@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392055, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Name
-      value: Dino Dog
+      value: Dino Dog Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Sprite
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014623, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.88
+      value: -12.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
