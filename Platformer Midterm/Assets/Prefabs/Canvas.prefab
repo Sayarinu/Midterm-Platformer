@@ -1162,10 +1162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb9fa15f00ada44b9b0d5f40ae184e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: []
+  images:
+  - {fileID: 8447782967988493039}
+  - {fileID: 8447782967972850926}
+  - {fileID: 8447782966831810633}
   full: {fileID: -186018026, guid: 0a0bc1c363fb070488409ac0b7320f54, type: 3}
   empty: {fileID: -511257020, guid: 0a0bc1c363fb070488409ac0b7320f54, type: 3}
-  health: 3
 --- !u!1 &8447782967972850924
 GameObject:
   m_ObjectHideFlags: 0
