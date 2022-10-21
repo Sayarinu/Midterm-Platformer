@@ -14,6 +14,11 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D _rigidbody;
     float xspeed=0;
 
+    public static bool canSwim;
+    public static bool canDash;
+    public static int maxHealth = 2;
+
+
     [SerializeField]
     float friction=0.15f;
     [SerializeField]
@@ -60,8 +65,8 @@ public class PlayerMove : MonoBehaviour
     private bool invincible=false;
     [SerializeField]
     private float currentTime=0;
-    [SerializeField]
-    private int health=5;
+    
+    public static int health=2;
 
 
     // Start is called before the first frame update
