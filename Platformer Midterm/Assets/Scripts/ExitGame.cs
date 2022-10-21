@@ -13,7 +13,7 @@ public class ExitGame : MonoBehaviour
     {
         input = new PlayerInput();
         input.Player.Enable();
-        input.Player.exit.performed += Exit;
+
         input.Player.die.performed += Reset;
     }
 
@@ -23,9 +23,7 @@ public class ExitGame : MonoBehaviour
         
     }
 
-    public void Exit(InputAction.CallbackContext context){
-        Application.Quit();
-    }
+
 
     public void Reset(InputAction.CallbackContext context){
         SceneManager.LoadScene("Title Screen");

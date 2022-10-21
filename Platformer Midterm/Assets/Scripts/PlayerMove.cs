@@ -98,7 +98,7 @@ public class PlayerMove : MonoBehaviour
         input.Player.movement.performed += Move;
         input.Player.dash.performed += Dash;
         input.Player.die.performed += DieInput;
-        input.Player.exit.performed += Exit;
+    
         // set spawn as first checkpoint
         PublicVars.currentCheckpoint = transform.position;
     }
@@ -196,9 +196,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void Exit(InputAction.CallbackContext context){
-        Application.Quit();
-    }
+    
 
     public void DieInput(InputAction.CallbackContext context){
         Die();
