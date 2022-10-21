@@ -278,6 +278,7 @@ public class PlayerMove : MonoBehaviour
         }
     } 
 
+
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.layer==4){
             
