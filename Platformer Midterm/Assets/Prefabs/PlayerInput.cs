@@ -53,6 +53,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""die"",
+                    ""type"": ""Button"",
+                    ""id"": ""42cfcfdf-1a42-4c3f-839a-c8ab4d3c9caa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""86989f5e-175e-4548-b90c-0863e6610c39"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +227,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""897f3028-155e-4396-bfc9-dbc385235fa5"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""die"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70bb3464-46ff-4db4-9f8a-14d413ea42ec"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -220,6 +260,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_jump = m_Player.FindAction("jump", throwIfNotFound: true);
         m_Player_movement = m_Player.FindAction("movement", throwIfNotFound: true);
         m_Player_dash = m_Player.FindAction("dash", throwIfNotFound: true);
+        m_Player_die = m_Player.FindAction("die", throwIfNotFound: true);
+        m_Player_exit = m_Player.FindAction("exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,6 +324,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_jump;
     private readonly InputAction m_Player_movement;
     private readonly InputAction m_Player_dash;
+    private readonly InputAction m_Player_die;
+    private readonly InputAction m_Player_exit;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -289,6 +333,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @jump => m_Wrapper.m_Player_jump;
         public InputAction @movement => m_Wrapper.m_Player_movement;
         public InputAction @dash => m_Wrapper.m_Player_dash;
+        public InputAction @die => m_Wrapper.m_Player_die;
+        public InputAction @exit => m_Wrapper.m_Player_exit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -307,6 +353,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @die.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
+                @die.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
+                @die.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
+                @exit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @exit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @exit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -320,6 +372,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @dash.started += instance.OnDash;
                 @dash.performed += instance.OnDash;
                 @dash.canceled += instance.OnDash;
+                @die.started += instance.OnDie;
+                @die.performed += instance.OnDie;
+                @die.canceled += instance.OnDie;
+                @exit.started += instance.OnExit;
+                @exit.performed += instance.OnExit;
+                @exit.canceled += instance.OnExit;
             }
         }
     }
@@ -329,5 +387,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnDie(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }

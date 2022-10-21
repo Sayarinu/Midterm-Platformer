@@ -97,6 +97,8 @@ public class PlayerMove : MonoBehaviour
         input.Player.jump.performed += Jump;
         input.Player.movement.performed += Move;
         input.Player.dash.performed += Dash;
+        input.Player.die.performed += DieInput;
+        input.Player.exit.performed += Exit;
         // set spawn as first checkpoint
         PublicVars.currentCheckpoint = transform.position;
     }
@@ -194,6 +196,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void Exit(InputAction.CallbackContext context){
+        Application.Quit();
+    }
+
+    public void DieInput(InputAction.CallbackContext context){
+        Die();
+    }
     IEnumerator DashTime(){
         print("actual");
         Vector2 vec = input.Player.movement.ReadValue<Vector2>();
@@ -215,20 +224,23 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.layer==4){
-            
-            if(!inWater){
-                speed/=2;
-                accel/=2;
-                friction/=2;
-                dashspeed/=2;
-                dashFriction/=2;
-                jump/=3;
-                xspeed/=2;
-                gravityScale/=4;
-                _rigidbody.gravityScale=gravityScale;
-                _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/2);
+            if(PublicVars.canSwim){
+                if(!inWater){
+                    speed/=2;
+                    accel/=2;
+                    friction/=2;
+                    dashspeed/=2;
+                    dashFriction/=2;
+                    jump/=3;
+                    xspeed/=2;
+                    gravityScale/=4;
+                    _rigidbody.gravityScale=gravityScale;
+                    _rigidbody.velocity= new Vector2(xspeed,_rigidbody.velocity.y/2);
+                }
+                inWater = true;
+            }else if(!invincible){
+                Die();
             }
-            inWater = true;
         }
     }
 
@@ -261,15 +273,11 @@ public class PlayerMove : MonoBehaviour
                     Die();
                 }
             } 
-            }
-            if (other.CompareTag("DeathBox") && !invincible) {
-                    Die();
-            } else if (other.gameObject.layer == 4) {   // in water
-                if (!PublicVars.canSwim) {
-                    Die();
-                }
-            }
-        } 
+        }if (other.CompareTag("DeathBox") && !invincible) {
+            Die();
+        }
+    } 
+
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.layer==4){
