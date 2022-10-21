@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
+
 public class PlayerMove : MonoBehaviour
 {
     
@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     public static bool canSwim;
     public static bool canDash;
-    public static int maxHealth = 2;
+    
 
 
     [SerializeField]
@@ -66,7 +66,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float currentTime=0;
     
-    public static int health=2;
+    
+
 
 
     // Start is called before the first frame update
@@ -136,7 +137,6 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate() {
         currentTime += 1;
-        print(health);
         if(currentTime - hitTime > 50){
             invincible=false;
         }
@@ -221,18 +221,19 @@ public class PlayerMove : MonoBehaviour
                 }else{
                     _rigidbody.velocity = new Vector2(xspeed,jump/2);
                 }
-            }else{
-                if(!invincible){
-                    hitTime=currentTime;
-                    invincible = true;
-                    health-=1;
-                    if(health==0){
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    }
+                hitTime = currentTime - 49;
+                invincible = true;
+                print(currentTime + " kill");
+            }else if(!invincible){
+                print(currentTime + " hit");
+                hitTime=currentTime;
+                invincible = true;
+                PublicVars.playerHealth-=1;
+                if(PublicVars.playerHealth<=0){
+                    PublicVars.playerHealth=PublicVars.maxHealth;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
-            }
-
-            
+            } 
         }
     }
 
