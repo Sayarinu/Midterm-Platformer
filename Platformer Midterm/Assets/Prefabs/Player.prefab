@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6968685, g: 0.9433962, b: 0.6897472, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,12 +147,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  dashspeed: 20
   jump: 30
   _rigidbody: {fileID: 0}
   friction: 0.4
   accel: 0.6
+  dashFriction: 1
   plats:
     serializedVersion: 2
     m_Bits: 64
+  enemies:
+    serializedVersion: 2
+    m_Bits: 128
   extraHeight: 0.1
   sideBuffer: 0.1
+  dashAvailable: 1
+  isDashing: 0
+  facingRight: 1
+  inWater: 0
+  gravityScale: 0
+  swimTime: 0
+  hitTime: 0
+  invincible: 0
+  currentTime: 0
+  health: 5
