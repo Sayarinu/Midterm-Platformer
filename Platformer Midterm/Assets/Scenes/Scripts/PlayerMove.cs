@@ -165,13 +165,11 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void Dash(InputAction.CallbackContext context){
-        if (PublicVars.canDash) {
-            Vector2 vec = input.Player.movement.ReadValue<Vector2>();
-            if(dashAvailable){
-                print("dash");
-                StartCoroutine("DashTime");
-                dashAvailable = false;
-            }
+        Vector2 vec = input.Player.movement.ReadValue<Vector2>();
+        if(dashAvailable){
+            print("dash");
+            StartCoroutine("DashTime");
+            dashAvailable = false;
         }
     }
 
