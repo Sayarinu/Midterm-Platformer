@@ -304,4 +304,11 @@ public class PlayerMove : MonoBehaviour
         transform.position = PublicVars.currentCheckpoint;
         PublicVars.playerHealth = 3;
     }
+
+    public void RemoveInput(){
+        input.Player.jump.performed -= Jump;
+        input.Player.movement.performed -= Move;
+        input.Player.dash.performed -= Dash;
+        input.Player.die.performed -= DieInput;
+    }
 }
