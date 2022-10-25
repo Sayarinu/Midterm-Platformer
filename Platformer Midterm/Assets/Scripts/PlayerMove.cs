@@ -303,6 +303,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Die() {
         transform.position = PublicVars.currentCheckpoint;
+        _rigidbody.velocity = Vector2.zero;
         PublicVars.playerHealth = 3;
     }
 
