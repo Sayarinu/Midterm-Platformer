@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     float sideBuffer = 0.001f;
 
     Color rayColor=Color.green;
-    private PlayerInput input; 
+    public PlayerInput input; 
 
     private BoxCollider2D boxcollider;
     
@@ -87,12 +87,13 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("starting");
         _audioSource = GetComponent<AudioSource>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.freezeRotation = true;
         boxcollider = GetComponent<BoxCollider2D>();
         gravityScale = _rigidbody.gravityScale;
-        input = new PlayerInput();
+        input = PublicVars.input;
         input.Player.Enable();
         input.Player.jump.performed += Jump;
         input.Player.movement.performed += Move;
