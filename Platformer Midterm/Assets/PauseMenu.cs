@@ -10,12 +10,16 @@ public class PauseMenu : MonoBehaviour
 
     private PlayerInput input;
 
+    private DefaultInputActions menuInput;
+
     public GameObject pauseMenuUI;
+
+    private int select = 0;
 
     private void Start() {
         input = PublicVars.input;
-        input.UI.pause.performed += PauseInput;
         input.Player.pause.performed += PauseInput;
+        input.UI.Cancel.performed += PauseInput;
     }
 
     public void PauseInput(InputAction.CallbackContext context) {
@@ -48,6 +52,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void returnToTitle() {
+        FindObjectOfType<PlayerMove>().RemoveInput();
         SceneManager.LoadScene("Title Screen");
+    }
+
+    public void RemoveInput(){
+        input.Player.pause.performed -= PauseInput;
+        input.UI.Cancel.performed -= PauseInput;
     }
 }

@@ -10,6 +10,7 @@ public class GateScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             other.gameObject.GetComponent<PlayerMove>().RemoveInput();
+            FindObjectOfType<PauseMenu>().RemoveInput();
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadScene(newBuildScene);
         }
