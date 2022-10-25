@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Offset.x
-      value: -6.187055
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Offset.y
-      value: 0.112492025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_RootOrder
@@ -29,11 +29,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9576929
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3963622
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45,15 +45,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392055, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Name
-      value: Piranha
+      value: Piranha Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Sprite
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014623, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.03
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
