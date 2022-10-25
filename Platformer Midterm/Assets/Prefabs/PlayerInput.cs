@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""45ecb44c-f488-45ed-bd4e-b4086b1d5e6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,6 +238,45 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""die"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f372a6df-b456-4d83-8425-6aea9b0d2082"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""b6bc380c-20cc-40db-965d-2831e4801c95"",
+            ""actions"": [
+                {
+                    ""name"": ""pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""92de5d7d-c7ec-4217-855f-f5fc33b4e89c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ed8c82ba-2ded-47ad-92a6-91c8dd86292d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +289,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_movement = m_Player.FindAction("movement", throwIfNotFound: true);
         m_Player_dash = m_Player.FindAction("dash", throwIfNotFound: true);
         m_Player_die = m_Player.FindAction("die", throwIfNotFound: true);
+        m_Player_pause = m_Player.FindAction("pause", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_pause = m_UI.FindAction("pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,6 +356,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_movement;
     private readonly InputAction m_Player_dash;
     private readonly InputAction m_Player_die;
+    private readonly InputAction m_Player_pause;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -312,6 +365,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @movement => m_Wrapper.m_Player_movement;
         public InputAction @dash => m_Wrapper.m_Player_dash;
         public InputAction @die => m_Wrapper.m_Player_die;
+        public InputAction @pause => m_Wrapper.m_Player_pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,6 +387,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @die.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
                 @die.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
                 @die.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
+                @pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -349,15 +406,56 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @die.started += instance.OnDie;
                 @die.performed += instance.OnDie;
                 @die.canceled += instance.OnDie;
+                @pause.started += instance.OnPause;
+                @pause.performed += instance.OnPause;
+                @pause.canceled += instance.OnPause;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_pause;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @pause => m_Wrapper.m_UI_pause;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @pause.started += instance.OnPause;
+                @pause.performed += instance.OnPause;
+                @pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnDie(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

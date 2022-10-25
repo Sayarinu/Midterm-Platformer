@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     float sideBuffer = 0.001f;
 
     Color rayColor=Color.green;
-    private PlayerInput input; 
+    public PlayerInput input; 
 
     private BoxCollider2D boxcollider;
     
@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
         _rigidbody.freezeRotation = true;
         boxcollider = GetComponent<BoxCollider2D>();
         gravityScale = _rigidbody.gravityScale;
-        input = new PlayerInput();
+        input = PublicVars.input;
         input.Player.Enable();
         input.Player.jump.performed += Jump;
         input.Player.movement.performed += Move;
