@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7113471699007321111}
   - component: {fileID: -631212587565890600}
   m_Layer: 6
-  m_Name: BrickWall
+  m_Name: CastleWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 91d545ab5d32e2a4c84b64e31f4c0734, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ba0e17ca5291e949b44de4c8d29b06a, type: 3}
   m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
