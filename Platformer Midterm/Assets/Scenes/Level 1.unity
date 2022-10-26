@@ -1532,6 +1532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2535379285570668236, guid: 146abd2180b9e2847b990b198b3d0fc9, type: 3}
+      propertyPath: m_TagString
+      value: Collect
+      objectReference: {fileID: 0}
     - target: {fileID: 8151254513914793380, guid: 146abd2180b9e2847b990b198b3d0fc9, type: 3}
       propertyPath: m_Name
       value: 1 - 6
@@ -1649,6 +1653,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8940464832626401485, guid: 1e633698d9d7ec14394eb462b82f9d6a, type: 3}
+      propertyPath: collectibleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e4204e4a92c79043baccfa738ffbeb1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e633698d9d7ec14394eb462b82f9d6a, type: 3}
 --- !u!1 &1941095114
@@ -1757,7 +1765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9022727124885718359, guid: f6c85353fee9a7040914154c737639fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 9022727124885718359, guid: f6c85353fee9a7040914154c737639fb, type: 3}
       propertyPath: m_LocalPosition.y
