@@ -449,6 +449,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1705026688}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &245142062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,7 +1113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 120.51602, y: -118.94885}
+  m_AnchoredPosition: {x: 120.51602, y: -48}
   m_SizeDelta: {x: 1182, y: 665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &684540727
@@ -1247,7 +1259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 120.51602, y: -13.948853}
+  m_AnchoredPosition: {x: 120.51602, y: 42}
   m_SizeDelta: {x: 1182, y: 665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775511818
@@ -1393,7 +1405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 120.51602, y: -214.94885}
+  m_AnchoredPosition: {x: 120.51602, y: -142}
   m_SizeDelta: {x: 1182, y: 665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069774291
@@ -2008,6 +2020,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582618230}
   m_CullTransparentMesh: 1
+--- !u!1 &1705026688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3461854660466068858, guid: 45123f6e97edb8e41940a00146ea6a93, type: 3}
+  m_PrefabInstance: {fileID: 3461854659954821392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823440195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

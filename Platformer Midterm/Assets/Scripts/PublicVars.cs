@@ -10,4 +10,6 @@ public static class PublicVars
     public static bool canDash = false;
     public static int numberOfKeys = 0;
     public static Vector3 currentCheckpoint = Vector3.zero;
+    public static PlayerInput input = new PlayerInput();
+    public static bool fullscreen = true;
 }
