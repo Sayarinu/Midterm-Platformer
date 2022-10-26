@@ -31,6 +31,8 @@ public class PlayerMove : MonoBehaviour
     public AudioClip jumpSound;
 
     public AudioClip swimJumpSound;
+
+    public AudioClip collectibleSound;
     
 
     [SerializeField]
@@ -275,8 +277,12 @@ public class PlayerMove : MonoBehaviour
                     Die();
                 }
             } 
-        }if (other.CompareTag("DeathBox") && !invincible) {
+        }
+        if (other.CompareTag("DeathBox") && !invincible) {
             Die();
+        }
+        if (other.CompareTag("Collect")) {
+            _audioSource.PlayOneShot(collectibleSound);
         }
     } 
 
