@@ -103,6 +103,7 @@ public class RebindUI : MonoBehaviour
 
     private void Reset()
     {
+        
         InputManager.ResetBinding(actionName, bindingIndex);
         UpdateUI();
     }

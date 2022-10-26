@@ -63,17 +63,22 @@ public class InputManager : MonoBehaviour
             if(allCompositeParts)
             {
                 var nextBindingIndex = bindingIndex + 1;
-                if (nextBindingIndex < actionToRebind.bindings.Count && actionToRebind.bindings[nextBindingIndex].isPartOfComposite){
-                    DoRebind(actionToRebind, nextBindingIndex, statusText, allCompositeParts, excludeMouse);
+                if (nextBindingIndex < actionToRebind.bindings.Count){
+                    
+                    if(actionToRebind.bindings[nextBindingIndex].isPartOfComposite){
+                        
+                        DoRebind(actionToRebind, nextBindingIndex, statusText, allCompositeParts, excludeMouse);
+                    }
                 }else{
+                    
                     statusText.text = GetBindingName(actionToRebind.name, 0);
                 }
             }
-            if(!actionToRebind.bindings[bindingIndex+1].isPartOfComposite){
-                statusText.text = actionToRebind.GetBindingDisplayString(bindingIndex);
+            if(bindingIndex+1 < actionToRebind.bindings.Count){
+                if(!actionToRebind.bindings[bindingIndex+1].isPartOfComposite){
+                    statusText.text = actionToRebind.GetBindingDisplayString(bindingIndex);
+                }
             }
-            print(actionToRebind.name);
-            print(bindingIndex);
             
             SaveBindingOverride(actionToRebind);
             rebindComplete?.Invoke();
@@ -145,11 +150,16 @@ public class InputManager : MonoBehaviour
 
         if (action.bindings[bindingIndex].isComposite)
         {
-            for (int i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
+            print(bindingIndex);
+            for (int i = bindingIndex+1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; i++){
+                print("hi");
                 action.RemoveBindingOverride(i);
+            }
         }
-        else
+        else{
+            print("no");
             action.RemoveBindingOverride(bindingIndex);
+        }
 
         SaveBindingOverride(action);
     }
