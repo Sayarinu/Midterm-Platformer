@@ -147,6 +147,9 @@ public class PlayerMove : MonoBehaviour
                 }
             }
             _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
+            if(_rigidbody.velocity.y<-10){
+                _rigidbody.velocity = new Vector2(xspeed,-10);
+            }
         }else{
             dashAvailable = false;
         }
