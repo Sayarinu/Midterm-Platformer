@@ -249,6 +249,8 @@ public class PlayerMove : MonoBehaviour
             }else if(!invincible){
                 Die();
             }
+        }else if(other.gameObject.layer==8){
+            Die();
         }
     }
 
