@@ -9,6 +9,8 @@ using TMPro;
 public class InputManager : MonoBehaviour
 {
     public static PlayerInput inputActions;
+
+    public static string control;
     public int help;
 
     public static event Action rebindComplete;
@@ -22,9 +24,10 @@ public class InputManager : MonoBehaviour
     {
         inputActions = PublicVars.input;
         message = null;
+        control = null;
     }
 
-    public static void StartRebind(string actionName, int bindingIndex, TMP_Text statusText, bool excludeMouse)
+    public static void StartRebind(string actionName, int bindingIndex, TMP_Text statusText, bool excludeMouse, bool controller)
     {
         InputAction action = inputActions.asset.FindAction(actionName);
         if (action == null || action.bindings.Count <= bindingIndex)
@@ -38,13 +41,13 @@ public class InputManager : MonoBehaviour
             
             var firstPartIndex = bindingIndex + 1;
             if (firstPartIndex < action.bindings.Count && action.bindings[firstPartIndex].isPartOfComposite)
-                DoRebind(action, firstPartIndex, statusText, true, excludeMouse);
+                DoRebind(action, firstPartIndex, statusText, true, excludeMouse, controller);
         }
         else
-            DoRebind(action, bindingIndex, statusText, false, excludeMouse);
+            DoRebind(action, bindingIndex, statusText, false, excludeMouse, controller);
     }
-
-    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText, bool allCompositeParts, bool excludeMouse)
+   
+    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText, bool allCompositeParts, bool excludeMouse, bool controller)
     {
         if (actionToRebind == null || bindingIndex < 0){
             return;
@@ -57,7 +60,7 @@ public class InputManager : MonoBehaviour
 
         rebind.OnComplete(operation =>
         {
-            actionToRebind.Enable();
+            
             operation.Dispose();
 
             if(allCompositeParts)
@@ -66,17 +69,28 @@ public class InputManager : MonoBehaviour
                 if (nextBindingIndex < actionToRebind.bindings.Count){
                     
                     if(actionToRebind.bindings[nextBindingIndex].isPartOfComposite){
-                        
-                        DoRebind(actionToRebind, nextBindingIndex, statusText, allCompositeParts, excludeMouse);
+                        DoRebind(actionToRebind, nextBindingIndex, statusText, allCompositeParts, excludeMouse, controller);
                     }
                 }else{
-                    
-                    statusText.text = GetBindingName(actionToRebind.name, 0);
+                    if(controller){    
+                        statusText.text = GetBindingName(actionToRebind.name, 5);
+                    }else{
+                        statusText.text = GetBindingName(actionToRebind.name, 0);
+                    }
                 }
             }
             if(bindingIndex+1 < actionToRebind.bindings.Count){
-                if(!actionToRebind.bindings[bindingIndex+1].isPartOfComposite){
+                if(!actionToRebind.bindings[bindingIndex+1].isPartOfComposite&&!actionToRebind.bindings[bindingIndex+1].isComposite){
                     statusText.text = actionToRebind.GetBindingDisplayString(bindingIndex);
+                }
+                else if(actionToRebind.bindings[bindingIndex+1].isComposite){
+                    if(controller){
+                        statusText.text = GetBindingName(actionToRebind.name, 5);
+                    }else{
+                        
+                        statusText.text = GetBindingName(actionToRebind.name, 0);
+                    
+                    }
                 }
             }
             
@@ -86,7 +100,7 @@ public class InputManager : MonoBehaviour
 
         rebind.OnCancel(operation =>
         {
-            actionToRebind.Enable();
+            
             operation.Dispose();
 
             rebindCanceled?.Invoke();
@@ -163,5 +177,7 @@ public class InputManager : MonoBehaviour
 
         SaveBindingOverride(action);
     }
+
+    
 
 }

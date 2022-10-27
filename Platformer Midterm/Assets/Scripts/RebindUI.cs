@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem.Users;
 
+[RequireComponent(typeof(PlayerInput))]
 public class RebindUI : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference action;
     [SerializeField]
     private bool excludeMouse = true;
-    [Range(0,10)]
-    [SerializeField]
-    private int selectedBinding;
+   
+   
     [SerializeField]
     private InputBinding.DisplayStringOptions displayStringOptions;
     [SerializeField]
@@ -30,16 +31,34 @@ public class RebindUI : MonoBehaviour
     [SerializeField]
     private Button reset;
 
+    private PlayerInput input;
     public InputManager manager;
     public GameObject panel;
     public TMP_Text message;
+    public string controlScheme;
+
+    [SerializeField]
+    private int controllerBindIndex;
+
+    public TMP_Text controllerBind;
+    [SerializeField]
+    private Button controllerButton;
+    
+    
 
     private void Awake() {
         UpdateUI();
+        input = PublicVars.input;
+       
+       
+        
         
     }
+
+    
     private void OnEnable() {
         rebind.onClick.AddListener(() => DoRebind());
+        controllerButton.onClick.AddListener(() => DoRebindController());
         reset.onClick.AddListener(() => Reset());
 
         if(action != null){
@@ -48,6 +67,13 @@ public class RebindUI : MonoBehaviour
         }
         InputManager.rebindComplete += UpdateUI;
         InputManager.rebindCanceled += UpdateUI;
+    
+    }
+
+    public void Change(InputUser user, InputUserChange change, InputDevice device){
+        if(change == InputUserChange.ControlSchemeChanged){
+            print("hi");
+        }
     }
     private void OnDisable()
     {
@@ -61,15 +87,20 @@ public class RebindUI : MonoBehaviour
         GetBindingInfo();
         UpdateUI();
     }
+    public void OnControlsChanged()
+    {
+       print("hi");
+    }
+    
     private void GetBindingInfo()
     {
         if (action.action != null)
             actionName = action.action.name;
 
-        if(action.action.bindings.Count > selectedBinding)
-        {
-            binding = action.action.bindings[selectedBinding];
-            bindingIndex = selectedBinding;
+        bindingIndex = action.action.GetBindingIndexForControl(action.action.controls[0]);
+        
+        if(action.action.bindings[bindingIndex].isPartOfComposite){
+            bindingIndex-=1;
         }
     }
      private void UpdateUI()
@@ -82,9 +113,12 @@ public class RebindUI : MonoBehaviour
             if (Application.isPlaying)
             {
                 rebindText.text = InputManager.GetBindingName(actionName, bindingIndex);
+                controllerBind.text = InputManager.GetBindingName(actionName, controllerBindIndex);
             }
-            else
+            else{
                 rebindText.text = action.action.GetBindingDisplayString(bindingIndex);
+                controllerBind.text = action.action.GetBindingDisplayString(controllerBindIndex);
+            }
         }
     }
 
@@ -97,7 +131,20 @@ public class RebindUI : MonoBehaviour
             InputManager.rebindComplete -= UpdateUI;
             InputManager.rebindCanceled -= UpdateUI;
         }
-        InputManager.StartRebind(actionName, bindingIndex, rebindText, excludeMouse);
+        InputManager.StartRebind(actionName, bindingIndex, rebindText, excludeMouse, false);
+       
+    }
+
+    private void DoRebindController()
+    {
+        if(actionName!="movement"){
+            InputManager.rebindComplete += UpdateUI;
+            InputManager.rebindCanceled += UpdateUI;
+        }else{
+            InputManager.rebindComplete -= UpdateUI;
+            InputManager.rebindCanceled -= UpdateUI;
+        }
+        InputManager.StartRebind(actionName, controllerBindIndex, controllerBind, excludeMouse, true);
        
     }
 
@@ -105,6 +152,7 @@ public class RebindUI : MonoBehaviour
     {
         
         InputManager.ResetBinding(actionName, bindingIndex);
+        InputManager.ResetBinding(actionName, controllerBindIndex);
         UpdateUI();
     }
 }

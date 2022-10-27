@@ -50,6 +50,11 @@ public class PauseMenu : MonoBehaviour
         input.Player.Disable();
     }
 
+    public void Back(){
+        controllerUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+    }
+
     public void LoadOptions() {
         controllerUI.SetActive(true);
         pauseMenuUI.SetActive(false);
