@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public static class PublicVars
 {
@@ -12,4 +13,5 @@ public static class PublicVars
     public static Vector3 currentCheckpoint = Vector3.zero;
     public static PlayerInput input = new PlayerInput();
     public static bool fullscreen = true;
+    public static InputDevice currentDevice = new Gamepad();
 }

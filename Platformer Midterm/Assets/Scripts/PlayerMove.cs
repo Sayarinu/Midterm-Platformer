@@ -172,6 +172,8 @@ public class PlayerMove : MonoBehaviour
         return ray.collider!=null;
     }
     public void Jump(InputAction.CallbackContext context){
+        
+        input.asset.FindControlSchemeIndex(context.control.device.displayName);
         if(context.performed && (isGrounded(plats,sideBuffer) || (inWater && currentTime - swimTime > 10))){
             swimTime = currentTime;
             _rigidbody.velocity = new Vector2(xspeed,jump);
@@ -184,6 +186,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void Move(InputAction.CallbackContext context){
+        
         float val = input.Player.movement.ReadValue<Vector2>().x;
         if(xspeed<speed && (speed*-1)<xspeed){
             xspeed+=val*accel;
@@ -193,6 +196,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void Dash(InputAction.CallbackContext context){
+        
         Vector2 vec = input.Player.movement.ReadValue<Vector2>();
         if(dashAvailable){
             print("dash");
