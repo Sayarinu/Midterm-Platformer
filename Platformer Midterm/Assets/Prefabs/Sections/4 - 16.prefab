@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2118569128524250287
 Transform:
   m_ObjectHideFlags: 0
@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 7944348159137535692, guid: 1cfc174508cc85f4cadc86aed60e42bb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d948930cb625fc84ca0147a202adc4d7, type: 3}
     - target: {fileID: 8733254626192172871, guid: 1cfc174508cc85f4cadc86aed60e42bb, type: 3}
       propertyPath: m_RootOrder
       value: 2
