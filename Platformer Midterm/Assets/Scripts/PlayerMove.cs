@@ -313,6 +313,9 @@ public class PlayerMove : MonoBehaviour
         if (other.CompareTag("Collect")) {
             _audioSource.PlayOneShot(collectibleSound);
         }
+        if (other.CompareTag("BOSS")) {
+            Die();
+        }
     } 
 
 

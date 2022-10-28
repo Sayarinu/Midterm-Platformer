@@ -8,6 +8,7 @@ TagManager:
   - Boundary
   - DeathBox
   - Collect
+  - BOSS
   layers:
   - Default
   - TransparentFX
