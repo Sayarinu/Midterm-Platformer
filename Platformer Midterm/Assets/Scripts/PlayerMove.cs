@@ -14,8 +14,7 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D _rigidbody;
     float xspeed=0;
 
-    public static bool canSwim;
-    public static bool canDash;
+    
 
     AudioSource _audioSource;
 
@@ -82,8 +81,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float currentTime=0;
     
-    
-
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
 
     // Start is called before the first frame update
@@ -101,20 +100,26 @@ public class PlayerMove : MonoBehaviour
         input.Player.movement.performed += Move;
         input.Player.dash.performed += Dash;
         input.Player.die.performed += DieInput;
-    
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // set spawn as first checkpoint
         PublicVars.currentCheckpoint = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isGrounded(plats,sideBuffer)){
-
+            if(_rigidbody.velocity.y<=0){
+                animator.SetTrigger("Grounded");
+                animator.SetBool("Jumping",false);
+            }
             rayColor = Color.green; 
             dashAvailable = true;
         }else{
             rayColor = Color.red;
+            animator.SetTrigger("Jump");
         }
         Debug.DrawRay(boxcollider.bounds.center + new Vector3(boxcollider.bounds.extents.x-sideBuffer,0),Vector2.down*(boxcollider.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(boxcollider.bounds.center - new Vector3(boxcollider.bounds.extents.x-sideBuffer,0),Vector2.down*(boxcollider.bounds.extents.y + extraHeight), rayColor);
@@ -137,8 +142,15 @@ public class PlayerMove : MonoBehaviour
             }
             if(xspeed>0){
                 facingRight = 1;
+                spriteRenderer.flipX = false;
             }else if(xspeed<0){
                 facingRight = -1;
+                spriteRenderer.flipX = true;
+            }
+            if(xspeed!=0){
+                animator.SetBool("Running",true);
+            }else{
+                animator.SetBool("Running",false);
             }
             if(isGrounded(plats,sideBuffer)){
                 if(xspeed>speed){
@@ -150,7 +162,10 @@ public class PlayerMove : MonoBehaviour
             }
             _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y);
             if(_rigidbody.velocity.y<-10){
-                _rigidbody.velocity = new Vector2(xspeed,-10);
+                _rigidbody.velocity = new Vector2(xspeed,_rigidbody.velocity.y+dashFriction);
+            }
+            if(_rigidbody.velocity.y>50){
+                _rigidbody.velocity = new Vector2(xspeed,dashspeed-0.01f);
             }
         }else{
             dashAvailable = false;
@@ -163,6 +178,7 @@ public class PlayerMove : MonoBehaviour
         currentTime += 1;
         if(currentTime - hitTime > 50){
             invincible=false;
+            animator.SetBool("Invincible",false);
         }
     }
     private bool isGrounded(LayerMask layer, float buffer){
@@ -182,6 +198,8 @@ public class PlayerMove : MonoBehaviour
             } else {
                 _audioSource.PlayOneShot(swimJumpSound);
             }
+            animator.SetTrigger("Jump");
+            animator.SetBool("Jumping",true);
         }
     }
 
@@ -198,7 +216,7 @@ public class PlayerMove : MonoBehaviour
     public void Dash(InputAction.CallbackContext context){
         
         Vector2 vec = input.Player.movement.ReadValue<Vector2>();
-        if(dashAvailable){
+        if(dashAvailable && PublicVars.canDash){
             print("dash");
             StartCoroutine("DashTime");
             dashAvailable = false;
@@ -249,6 +267,8 @@ public class PlayerMove : MonoBehaviour
             }else if(!invincible){
                 Die();
             }
+        }else if(other.gameObject.layer==8){
+            Die();
         }
     }
 
@@ -260,6 +280,10 @@ public class PlayerMove : MonoBehaviour
             }else if (isGrounded(enemies,0) && !isGrounded(plats,sideBuffer) && !inWater){
                 _audioSource.PlayOneShot(enemyDeathSound);
                 Destroy(other.gameObject);
+                animator.SetTrigger("Grounded");
+                animator.SetBool("Jumping",false);
+                animator.SetTrigger("Jump");
+                animator.SetBool("Jumping",true);
                 if(input.Player.jump.IsPressed()){
                     _rigidbody.velocity = new Vector2(xspeed,jump);
                 }else{
@@ -270,6 +294,7 @@ public class PlayerMove : MonoBehaviour
             }else if(!invincible){
                 hitTime=currentTime;
                 invincible = true;
+                animator.SetBool("Invincible",true);
                 PublicVars.playerHealth-=1;
                 if (PublicVars.playerHealth != 0) {
                     _audioSource.PlayOneShot(takeDamageSound);
