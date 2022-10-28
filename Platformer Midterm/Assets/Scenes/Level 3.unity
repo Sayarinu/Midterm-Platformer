@@ -7814,7 +7814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8447782967631808734, guid: 9437e5243a01dc847aa561ad4f5a97e7, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8447782967631808734, guid: 9437e5243a01dc847aa561ad4f5a97e7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7996,6 +7996,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e633698d9d7ec14394eb462b82f9d6a, type: 3}
+--- !u!1 &1479315911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8940464832626401474, guid: 1e633698d9d7ec14394eb462b82f9d6a, type: 3}
+  m_PrefabInstance: {fileID: 1479315910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1479315912
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479315911}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddac5a02c42583744ab6070e6a8c7214, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1566718334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9807,11 +9832,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9022727124885718359, guid: f6c85353fee9a7040914154c737639fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 9022727124885718359, guid: f6c85353fee9a7040914154c737639fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 9022727124885718359, guid: f6c85353fee9a7040914154c737639fb, type: 3}
       propertyPath: m_LocalPosition.z
