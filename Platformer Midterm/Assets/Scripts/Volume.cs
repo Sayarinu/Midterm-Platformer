@@ -8,7 +8,7 @@ public class Volume : MonoBehaviour
     [SerializeField]
     private Slider slider;
     // Start is called before the first frame update
-    private void Start() {
+    private void Awake() {
         slider.value = AudioListener.volume;
     }
     public void ChangeVolume()
