@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392055, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Name
-      value: Squid
+      value: Squid Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Sprite
@@ -97,3 +97,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+--- !u!1 &2572897762825385652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2753185188181014620, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+  m_PrefabInstance: {fileID: 396743057124347624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8081950015992187535
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572897762825385652}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 162cd5671e27d3847b8e915357bca5a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8873941005268918685
+--- !u!1001 &3874690832300341937
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,19 +9,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Size.x
-      value: 2.6566992
+      value: 1.9408412
       objectReference: {fileID: 0}
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Size.y
-      value: 1.7567633
+      value: 2.5953398
       objectReference: {fileID: 0}
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: -0.14317155
       objectReference: {fileID: 0}
     - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: -0.020453215
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -7470613052734593036, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_RootOrder
@@ -29,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 2.9576929
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: 0.3963622
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45,15 +73,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392050, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -69,12 +97,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392055, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Name
-      value: Piranha Variant
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4773c7722754afb44b85db56e81ad873, type: 3}
+      objectReference: {fileID: 21300000, guid: 3cd86759ae1005f429a8c16c4a96d1d2, type: 3}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_SpriteSortPoint
       value: 0
@@ -92,27 +120,27 @@ PrefabInstance:
       value: 7.6291
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014623, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
+      propertyPath: m_LocalPosition.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
---- !u!1 &6706938480938113473 stripped
+--- !u!1 &1436909548418630381 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2753185188181014620, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
-  m_PrefabInstance: {fileID: 8873941005268918685}
+  m_PrefabInstance: {fileID: 3874690832300341937}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &153806363271697853
+--- !u!95 &4055424462201111316
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706938480938113473}
+  m_GameObject: {fileID: 1436909548418630381}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 96bec30a3b38e2e41bfe7e24a74fb8b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93e813a1dbba7954e8b5aa39e9d89b12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

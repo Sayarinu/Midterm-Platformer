@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188078392055, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Name
-      value: Clown Enemy
+      value: Clown Enemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2753185188181014622, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
       propertyPath: m_Sprite
@@ -121,3 +121,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+--- !u!1 &1436909548418630381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2753185188181014620, guid: 3532e9534a88da34da9ffc462ff1b8c5, type: 3}
+  m_PrefabInstance: {fileID: 3874690832300341937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &2300448300377328693
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436909548418630381}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 09d05d0e17632f547800cef25ada3ee2, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &4055424462201111316
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436909548418630381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e502f7180db9a6f48bacc092dad43e13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

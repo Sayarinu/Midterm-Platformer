@@ -4344,10 +4344,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashPowerUp
       objectReference: {fileID: 0}
-    - target: {fileID: 248707172104042212, guid: 4af6fe5aee0f1fd4d82ce88350acc8c9, type: 3}
-      propertyPath: m_TagString
-      value: Collect
-      objectReference: {fileID: 0}
     - target: {fileID: 8210538305175845624, guid: 4af6fe5aee0f1fd4d82ce88350acc8c9, type: 3}
       propertyPath: m_RootOrder
       value: 1
